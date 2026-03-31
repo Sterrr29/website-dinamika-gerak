@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pelajari Hukum III Newton melalui contoh peluncuran roket, dengan penjelasan aksi dan reaksi dalam fisika.">
+    <title>🚀 Hukum III Newton: Aksi dan Reaksi Peluncuran Roket</title>
+    <style>
+        :root {
+            --ungu-dark: #581c87;
+            --ungu-primary: #7c3aed;
+            --ungu-light: #a855f7;
+            --ungu-accent: #c084fc;
+            --text-primary: #f8f5ff;
+            --text-secondary: rgba(248, 245, 255, 0.9);
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--ungu-dark) 0%, var(--ungu-primary) 25%, var(--ungu-light) 50%, var(--ungu-accent) 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            background: rgba(88, 28, 135, 0.95);
+            backdrop-filter: blur(25px);
+            padding: 40px 30px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(88, 28, 135, 0.5);
+            border: 1px solid var(--glass-border);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            background: linear-gradient(45deg, #fff, #f0e6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            margin-bottom: 30px;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.4);
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #fff;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+            font-weight: 700;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #fff, transparent);
+            border-radius: 2px;
+        }
+        
+        p, ul, li {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            margin-bottom: 18px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        ul {
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+        }
+        
+        .highlight {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 6px solid #fff;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .illustration {
+            text-align: center;
+            margin: 30px 0;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            margin: 25px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 60px rgba(124, 58, 237, 0.5);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(88, 28, 135, 0.95);
+            backdrop-filter: blur(25px);
+            border-radius: 20px;
+            margin-top: 40px;
+            color: var(--text-secondary);
+            box-shadow: 0 -10px 30px rgba(88, 28, 135, 0.4);
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 25px 20px;
+            }
+            
+            .container {
+                padding: 0 10px;
+            }
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Print optimization */
+        @media print {
+            body { 
+                background: white !important; 
+                color: black !important; 
+                text-shadow: none !important;
+            }
+            section, header, footer {
+                background: white !important;
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Hukum III Newton: Aksi dan Reaksi Peluncuran Roket</h1>
+        </header>
+
+        <section id="peristiwa">
+            <h2>🌟 1. Peristiwa dalam Kehidupan Sehari-hari</h2>
+            <p>Pernahkah kamu melihat peluncuran roket ke luar angkasa? Menurutmu, bagaimana roket bisa terangkat tinggi padahal tidak ada "lantai" atau benda yang dipijak di udara, apalagi di ruang hampa?</p>
+            <p>Perhatikan peristiwa berikut.</p>
+            <p>Pada Agustus 2025, roket raksasa <strong>Starship</strong> berhasil meluncur ke luar angkasa dengan menyemburkan gas hasil pembakaran bahan bakar ke arah bawah dengan kecepatan sangat tinggi. Roket tersebut tetap dapat bergerak naik meskipun setelah berada di luar atmosfer, udara hampir tidak ada.</p>
+            <p>Saat tahap pertama roket (booster) berpisah dari tahap atasnya, kedua bagian tersebut terlihat saling menjauh ke arah yang berlawanan dengan cepat.</p>
+            <p>Peristiwa ini menimbulkan pertanyaan penting: bagaimana roket dapat bergerak ke atas tanpa "mendorong udara", dan mengapa dua bagian roket bergerak saling menjauh saat berpisah?</p>
+            <img src="kasus3/kasus3.jpeg" alt="Ilustrasi peluncuran roket Starship ke luar angkasa">
+            <div class="illustration">Ilustrasi peluncuran roket Starship yang spektakuler</div>
+        </section>
+
+        <section id="hukum">
+            <h2>⚖️ 2. Bunyi Hukum III Newton</h2>
+            <p>Untuk memahami peristiwa tersebut, kita perlu mempelajari Hukum III Newton.</p>
+            <div class="highlight">
+                <p><strong>Hukum III Newton menyatakan bahwa:</strong></p>
+                <p><em>Untuk setiap aksi, selalu ada reaksi yang sama besar dan berlawanan arah.</em></p>
+            </div>
+            <p>Artinya, jika suatu benda memberikan gaya pada benda lain, maka benda kedua akan memberikan gaya yang besarnya sama tetapi arahnya berlawanan pada benda pertama.</p>
+            <p>Perlu dipahami bahwa:</p>
+            <ul>
+                <li>Gaya aksi dan reaksi bekerja pada <strong>dua benda yang berbeda</strong>.</li>
+                <li>Kedua gaya tersebut muncul <strong>secara bersamaan</strong>.</li>
+                <li>Besarnya <strong>sama</strong>, tetapi arahnya <strong>berlawanan</strong>.</li>
+            </ul>
+            <p class="highlight">💡 Ingat: aksi dan reaksi bukan saling meniadakan karena bekerja pada benda yang berbeda!</p>
+        </section>
+
+        <section id="analisis">
+            <h2>🔬 3. Analisis Peristiwa Berdasarkan Hukum III Newton</h2>
+            <p>Saat roket diluncurkan, mesin roket menyemburkan gas panas berkecepatan tinggi ke arah bawah. Gas tersebut terdorong ke bawah oleh gaya dari mesin roket.</p>
+            <p>Sebagai reaksi, gas memberikan gaya yang sama besar tetapi berlawanan arah pada roket, yaitu ke arah atas. Gaya inilah yang disebut <strong>gaya dorong (thrust)</strong> dan menyebabkan roket terangkat.</p>
+            <p>Roket tidak "mendorong udara", melainkan mendorong <strong>gas hasil pembakaran</strong> yang keluar dari mesinnya sendiri. Oleh karena itu, roket tetap dapat bergerak di ruang hampa karena yang terlibat dalam aksi–reaksi adalah roket dan gas buangnya, bukan roket dan udara luar.</p>
+            <p>Pada saat pemisahan tahap roket, mekanisme pemisah mendorong kedua bagian roket. Ketika tahap atas memberikan gaya pada booster, booster memberikan gaya reaksi yang sama besar dan berlawanan arah. Akibatnya, kedua bagian bergerak <strong>saling menjauh</strong>.</p>
+            <p>✨ Fenomena ini sepenuhnya sesuai dengan prinsip aksi–reaksi dalam Hukum III Newton.</p>
+        </section>
+
+        <section id="kesalahan">
+            <h2>❌ 4. Kesalahan Konsep yang Sering Terjadi</h2>
+            <p>Banyak orang beranggapan bahwa roket dapat terbang karena "mendorong udara". Anggapan ini <strong>kurang tepat</strong>.</p>
+            <p>Jika roket hanya bergantung pada udara, maka roket tidak akan bisa bergerak di ruang hampa. Faktanya, roket tetap dapat melaju di luar angkasa karena yang terjadi adalah interaksi antara roket dan <strong>gas hasil pembakarannya sendiri</strong>.</p>
+            <p>Kesalahan lain adalah mengira bahwa gaya aksi lebih besar daripada gaya reaksi ketika roket bergerak naik. Padahal menurut Hukum III Newton, kedua gaya <strong>selalu sama besar</strong>. Roket dapat naik karena gaya dorong ke atas mengatasi gaya berat roket, bukan karena gaya reaksinya lebih besar daripada aksinya.</p>
+        </section>
+
+        <section id="eksperimen">
+            <h2>🧪 5. Kaitan dengan Eksperimen Virtual</h2>
+            <p>Untuk memperjelas konsep aksi–reaksi, perhatikan eksperimen virtual tentang interaksi dua benda.</p>
+            <p>Pada simulasi perahu yang didayung, ketika dayung mendorong air ke belakang (<strong>aksi</strong>), air memberikan gaya reaksi pada dayung ke arah depan. Akibatnya, perahu bergerak maju.</p>
+            <p>Panah merah menunjukkan gaya aksi, sedangkan panah biru menunjukkan gaya reaksi. Keduanya muncul bersamaan, sama besar, dan berlawanan arah.</p>
+            <p>Dalam simulasi lain, interaksi dua benda yang saling menekan atau bertumbukan juga menunjukkan bahwa setiap gaya selalu memiliki pasangan reaksinya.</p>
+            <p>🔗 Fenomena pada perahu dan pada roket memiliki prinsip yang sama. Ketika roket mendorong gas ke bawah, gas mendorong roket ke atas. Dengan demikian, eksperimen virtual membantu kita memahami bahwa gerak roket ke atas merupakan akibat langsung dari pasangan gaya aksi–reaksi sesuai dengan Hukum III Newton.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 <strong>Konsep Fisika Hukum III Newton</strong><br>
+            Dibuat oleh <em>Ester Maesya Tamba</em></p>
+        </footer>
+    </div>
+</body>
+</html>

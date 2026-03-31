@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hukum II Newton: Evakuasi Mobil</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #4a148c, #7b1fa2, #9c27b0, #ba68c8, #e1bee7); /* Ungu gradient epik */
+            color: #f8f5ff; /* Putih keunguan kontras sempurna */
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.95), rgba(123, 31, 162, 0.95));
+            color: #fff;
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0 8px 25px rgba(74, 20, 140, 0.4);
+            backdrop-filter: blur(15px);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+        
+        section {
+            margin: 0;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        section:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        section h2 {
+            color: #fff;
+            margin-top: 0;
+            font-size: 2em;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            font-weight: 600;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.4);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        p, ul, li {
+            margin: 15px 0;
+            font-size: 1.08em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .formula {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 30px 0;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            font-family: 'Courier New', monospace;
+        }
+        
+        .highlight {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 6px solid #fff;
+            margin: 25px 0;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.9), rgba(123, 31, 162, 0.9));
+            color: #fff;
+            margin-top: 30px;
+            box-shadow: 0 -8px 25px rgba(74, 20, 140, 0.4);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+            
+            section {
+                padding: 25px 20px;
+            }
+            
+            section h2 {
+                font-size: 1.6em;
+            }
+            
+            .formula {
+                font-size: 1.6em;
+                padding: 20px 15px;
+            }
+            
+            .container {
+                margin: 15px;
+                border-radius: 20px;
+            }
+        }
+        
+        /* Smooth scroll & animations */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        section {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .container, header, footer {
+                background: white !important;
+                box-shadow: none !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hukum II Newton dalam Evakuasi Mobil</h1>
+    </header>
+    
+    <div class="container">
+        <section id="peristiwa">
+            <h2>1. Peristiwa dalam Kehidupan Sehari-hari</h2>
+            <p>Pernahkah kamu melihat proses evakuasi kendaraan yang terperosok atau terjatuh di medan yang curam? Menurutmu, apakah kendaraan tersebut cukup ditarik dengan gaya sebesar mungkin agar cepat terangkat? Untuk memahami hal tersebut, perhatikan peristiwa berikut.</p>
+            <p>Sebuah mobil yang membawa satu keluarga terjun ke jurang di wilayah pegunungan. Mobil tersebut berhenti di lereng dengan posisi miring dan sebagian bodinya tertahan oleh semak dan tanah. Tim penyelamat berencana menarik mobil menggunakan tali baja yang dihubungkan ke kendaraan derek.</p>
+            <p>Namun, medan di sekitar jurang cukup curam dan licin akibat hujan. Selain itu, mobil yang bermuatan penumpang dan barang memiliki massa yang besar.</p>
+            <p>Sebagian anggota tim berpendapat bahwa mobil dapat langsung ditarik dengan gaya sebesar mungkin agar cepat terangkat. Sementara itu, anggota lain menyarankan agar penarikan dilakukan secara bertahap karena jika gaya tarik terlalu besar, tali dapat putus atau mobil justru tergelincir lebih dalam.</p>
+            <p>Dari peristiwa ini muncul pertanyaan penting: bagaimana hubungan antara gaya tarik, massa mobil, dan percepatan gerak mobil selama proses evakuasi?</p>
+        </section>
+
+        <section id="hukum">
+            <h2>2. Bunyi Hukum II Newton</h2>
+            <p>Untuk menjawab pertanyaan tersebut, kita perlu memahami Hukum II Newton.</p>
+            <p>Hukum II Newton menyatakan bahwa:</p>
+            <p>Percepatan suatu benda sebanding dengan resultan gaya yang bekerja padanya dan berbanding terbalik dengan massanya.</p>
+            <p>Secara matematis dinyatakan dengan persamaan:</p>
+            <div class="formula">𝐹 = 𝑚 × 𝑎</div>
+            <p>Keterangan:</p>
+            <ul>
+                <li>𝐹 = resultan gaya (Newton)</li>
+                <li>𝑚 = massa benda (kg)</li>
+                <li>𝑎 = percepatan (m/s²)</li>
+            </ul>
+            <p>Artinya:</p>
+            <ul>
+                <li>Semakin besar gaya yang diberikan, semakin besar percepatan yang dihasilkan.</li>
+                <li>Semakin besar massa benda, semakin kecil percepatan yang dihasilkan untuk gaya yang sama.</li>
+            </ul>
+            <p class="highlight">Ingat: gaya menyebabkan percepatan, bukan sekadar menyebabkan benda bergerak.</p>
+        </section>
+
+        <section id="analisis">
+            <h2>3. Analisis Peristiwa Berdasarkan Hukum II Newton</h2>
+            <p>Pada kasus evakuasi mobil, gaya yang bekerja pada mobil bukan hanya gaya tarik dari kendaraan derek. Ada pula gaya berat dan gaya gesek antara ban mobil dan tanah yang bekerja berlawanan arah dengan gerak mobil.</p>
+            <p>Jika gaya tarik yang diberikan terlalu kecil, resultan gaya menjadi kecil sehingga percepatan mobil juga kecil. Akibatnya, mobil sulit terangkat dari posisi awalnya.</p>
+            <p>Namun, jika gaya tarik diberikan terlalu besar secara tiba-tiba, percepatan mobil menjadi sangat besar. Hal ini dapat menyebabkan:</p>
+            <ul>
+                <li>Tali penarik mengalami tegangan berlebih dan berisiko putus.</li>
+                <li>Mobil bergerak tidak terkendali atau tergelincir lebih dalam.</li>
+            </ul>
+            <p>Karena massa mobil besar, diperlukan gaya yang cukup besar untuk menghasilkan percepatan yang memadai. Akan tetapi, gaya tersebut harus diberikan secara terkontrol agar percepatan yang terjadi tidak membahayakan proses evakuasi.</p>
+            <p>Dengan demikian, strategi penarikan yang aman adalah memberikan gaya secara bertahap sehingga percepatan mobil dapat dikendalikan sesuai prinsip Hukum II Newton.</p>
+        </section>
+
+        <section id="peran-massa">
+            <h2>4. Peran Massa dalam Proses Evakuasi</h2>
+            <p>Besarnya massa mobil sangat memengaruhi percepatan yang dihasilkan. Mobil yang bermuatan penuh memiliki massa lebih besar dibandingkan mobil kosong.</p>
+            <p>Menurut persamaan <span class="formula">𝐹 = 𝑚 × 𝑎</span>:</p>
+            <ul>
+                <li>Jika massa besar dan gaya tetap, percepatan menjadi kecil.</li>
+                <li>Jika ingin percepatan tetap sama pada massa yang lebih besar, maka gaya harus ditingkatkan.</li>
+            </ul>
+            <p>Inilah sebabnya mengapa kendaraan derek dengan daya tarik besar diperlukan dalam proses evakuasi kendaraan berat. Namun peningkatan gaya harus tetap mempertimbangkan kekuatan tali dan kondisi medan.</p>
+        </section>
+
+        <section id="eksperimen">
+            <h2>5. Kaitan dengan Eksperimen Virtual</h2>
+            <p>Untuk memperjelas konsep Hukum II Newton, perhatikan eksperimen virtual tentang hubungan gaya, massa, dan percepatan.</p>
+            <p>Dalam simulasi tersebut, siswa dapat:</p>
+            <ul>
+                <li>Mengubah besar massa benda,</li>
+                <li>Mengubah besar gaya yang diberikan,</li>
+                <li>Mengamati perubahan percepatan dan gerak benda secara langsung.</li>
+            </ul>
+            <p>Ketika gaya diperbesar sementara massa tetap, percepatan meningkat. Sebaliknya, ketika massa diperbesar sementara gaya tetap, percepatan menurun.</p>
+            <p>Simulasi juga menunjukkan adanya gaya gesek yang dapat mengurangi resultan gaya. Hal ini sejalan dengan kasus mobil di jurang, di mana gaya gesek dan kondisi medan memengaruhi percepatan mobil saat ditarik.</p>
+            <p>Melalui eksperimen virtual tersebut, dapat dipahami bahwa keberhasilan proses evakuasi tidak hanya ditentukan oleh "seberapa besar gaya diberikan", tetapi oleh hubungan antara gaya, massa, dan percepatan sesuai dengan Hukum II Newton.</p>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Konsep Fisika Hukum II Newton dibuat oleh Ester Maesya Tamba</p>
+    </footer>
+</body>
+</html>

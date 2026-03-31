@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🟣 Simulasi Hukum Newton Ketiga: Perahu Didayung</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body { 
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; 
+            text-align: center; 
+            background: linear-gradient(135deg, 
+                #8b5cf6 0%, 
+                #a855f7 25%, 
+                #c084fc 50%, 
+                #d8b4fe 75%, 
+                #e9d5ff 100%);
+            color: #f3e8ff;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Floating particles ungu */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 80px 80px, rgba(168,85,247,0.4), transparent),
+                radial-gradient(1px 1px at 120px 40px, rgba(255,255,255,0.2), transparent);
+            background-repeat: repeat;
+            background-size: 200px 150px;
+            animation: float 25s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        h1 {
+            font-size: clamp(2em, 5vw, 3.5em);
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff, #d8b4fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 20px rgba(168, 85, 247, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(168,85,247,0.6)); }
+            to { filter: drop-shadow(0 0 25px rgba(168,85,247,0.9)); }
+        }
+
+        canvas { 
+            border: 4px solid rgba(168, 85, 247, 0.6);
+            border-radius: 24px;
+            box-shadow: 
+                0 25px 80px rgba(139, 92, 246, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 0 40px rgba(168, 85, 247, 0.4);
+            display: block; 
+            margin: 25px auto;
+            background: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.4) 0%, 
+                rgba(168, 85, 247, 0.3) 50%, 
+                rgba(200, 132, 252, 0.35) 100%);
+            backdrop-filter: blur(15px);
+            max-width: 95vw;
+            max-height: 70vh;
+            cursor: grab;
+            transition: all 0.3s ease;
+        }
+
+        canvas:hover {
+            box-shadow: 
+                0 35px 100px rgba(139, 92, 246, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 0 60px rgba(168, 85, 247, 0.6);
+            transform: translateY(-5px);
+        }
+
+        canvas:active { cursor: grabbing; }
+
+        button { 
+            padding: 14px 28px; 
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            color: #f3e8ff;
+            border: 2px solid rgba(168, 85, 247, 0.5);
+            cursor: pointer; 
+            margin: 8px; 
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover { 
+            background: linear-gradient(135deg, #9333ea, #7c3aed);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.6);
+        }
+
+        button:hover::before { left: 100%; }
+
+        button:active { 
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .info { 
+            margin: 25px auto; 
+            font-size: 18px; 
+            color: #f3e8ff;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.3);
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .info strong {
+            background: linear-gradient(135deg, #e9d5ff, #d8b4fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        input[type="range"] { 
+            margin: 10px; 
+            width: 150px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #c084fc, #a855f7);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.5);
+        }
+
+        .controls { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 25px; 
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        label {
+            color: #f3e8ff;
+            font-weight: 600;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+            
+            .info {
+                font-size: 16px;
+                padding: 20px;
+                margin: 15px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🚤 Simulasi Hukum Newton Ketiga: Perahu Didayung</h1>
+    
+    <div class="info">
+        <p>🟣 <strong>Panah merah:</strong> <strong>Aksi</strong> - Dorong air ke belakang</p>
+        <p>🟣 <strong>Panah biru:</strong> <strong>Reaksi</strong> - Air dorong dayung ke depan</p>
+        <p>✨ Lihat partikel air ungu yang terdorong dan animasi orang mendayung secara realistis!</p>
+    </div>
+
+    <div class="controls">
+        <button id="startBtn">▶️ Mulai Simulasi</button>
+        <button id="resetBtn">🔄 Reset</button>
+        <label for="speed">Kecepatan Dayung: 
+            <input type="range" id="speed" min="0.1" max="2" step="0.1" value="1">
+        </label>
+    </div>
+
+    <canvas id="myCanvas" width="900" height="500"></canvas>
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        let animationId;
+        let boatX = 120;
+        let oarAngle = 0;
+        let isAnimating = false;
+        let speed = 1;
+        let particles = [];
+        let cloudX = 0;
+        let waveOffset = 0;
+        let armAngle = 0;
+
+        // Responsive canvas
+        function resizeCanvas() {
+            const scale = Math.min(window.innerWidth / 900, window.innerHeight / 500 * 0.8);
+            canvas.style.transform = `scale(${scale})`;
+            canvas.style.transformOrigin = 'top center';
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Background dengan tema ungu
+        function drawBackground() {
+            // Langit ungu gradient
+            const skyGradient = ctx.createLinearGradient(0, 0, 0, 250);
+            skyGradient.addColorStop(0, '#8b5cf6');
+            skyGradient.addColorStop(0.5, '#a855f7');
+            skyGradient.addColorStop(1, '#c084fc');
+            ctx.fillStyle = skyGradient;
+            ctx.fillRect(0, 0, canvas.width, 250);
+
+            // Matahari ungu-emas
+            const sunGradient = ctx.createRadialGradient(750, 90, 0, 750, 90, 50);
+            sunGradient.addColorStop(0, '#ffd700');
+            sunGradient.addColorStop(0.7, '#ffed4e');
+            sunGradient.addColorStop(1, '#c084fc');
+            ctx.fillStyle = sunGradient;
+            ctx.shadowBlur = 30;
+            ctx.shadowColor = '#c084fc';
+            ctx.beginPath();
+            ctx.arc(750, 90, 50, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Awan putih dengan glow
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = 'rgba(255,255,255,0.5)';
+            ctx.beginPath();
+            ctx.arc(cloudX, 110, 35, 0, Math.PI * 2);
+            ctx.arc(cloudX + 45, 110, 45, 0, Math.PI * 2);
+            ctx.arc(cloudX + 90, 110, 35, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            cloudX += 0.8;
+            if (cloudX > 1000) cloudX = -150;
+        }
+
+        // Perahu dengan detail kayu ungu
+        function drawBoat(x) {
+            ctx.save();
+            ctx.translate(x, 280);
+            
+            // Badan perahu kayu ungu
+            const woodGradient = ctx.createLinearGradient(0, 0, 100, 0);
+            woodGradient.addColorStop(0, '#8d6e63');
+            woodGradient.addColorStop(0.5, '#a1887f');
+            woodGradient.addColorStop(1, '#6d4c41');
+            ctx.fillStyle = woodGradient;
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.beginPath();
+            ctx.ellipse(55, 12, 55, 18, 0, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Bagian atas perahu
+            ctx.fillStyle = '#d7ccc8';
+            ctx.shadowBlur = 0;
+            ctx.fillRect(25, -12, 65, 12);
+            ctx.restore();
+            ctx.shadowBlur = 0;
+
+            // Orang dengan baju ungu
+            ctx.fillStyle = '#9c27b0'; // Ungu untuk baju
+            ctx.fillRect(x + 45, 220, 20, 45);
+            ctx.fillStyle = '#ffeb3b';
+            ctx.shadowBlur = 5;
+            ctx.shadowColor = '#ffeb3b';
+            ctx.beginPath();
+            ctx.arc(x + 55, 210, 12, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Lengan dengan animasi
+            ctx.strokeStyle = '#8d6e63';
+            ctx.lineWidth = 6;
+            ctx.lineCap = 'round';
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = '#8d6e63';
+            
+            // Lengan kiri
+            ctx.beginPath();
+            ctx.moveTo(x + 45, 225);
+            ctx.lineTo(x + 35, 235);
+            ctx.stroke();
+            
+            // Lengan kanan bergerak
+            ctx.beginPath();
+            ctx.moveTo(x + 65, 225);
+            ctx.lineTo(x + 65 + Math.cos(armAngle) * 35, 225 + Math.sin(armAngle) * 35);
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+        }
+
+        // Air dengan gelombang ungu
+        function drawWater() {
+            const waterGradient = ctx.createLinearGradient(0, 270, 0, canvas.height);
+            waterGradient.addColorStop(0, 'rgba(139, 92, 246, 0.8)');
+            waterGradient.addColorStop(0.5, 'rgba(168, 85, 247, 0.7)');
+            waterGradient.addColorStop(1, 'rgba(200, 132, 252, 0.6)');
+            ctx.fillStyle = waterGradient;
+            ctx.fillRect(0, 290, canvas.width, canvas.height - 290);
+
+            // Gelombang bercahaya
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.lineWidth = 4;
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = 'rgba(255,255,255,0.8)';
+            for (let i = 0; i < canvas.width; i += 60) {
+                ctx.beginPath();
+                ctx.moveTo(i, 290);
+                ctx.quadraticCurveTo(i + 30 + waveOffset, 275, i + 60, 290);
+                ctx.stroke();
+            }
+            ctx.shadowBlur = 0;
+            waveOffset += 1;
+            if (waveOffset > 15) waveOffset = 0;
+        }
+
+        // Dayung dan panah dengan efek glow ungu
+        function drawOarAndArrows(x, angle) {
+            const oarX = x + 65 + Math.cos(angle) * 55;
+            const oarY = 225 + Math.sin(angle) * 55;
+            
+            // Dayung kayu dengan glow
+            ctx.strokeStyle = '#8d6e63';
+            ctx.lineWidth = 6;
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = '#d7ccc8';
+            ctx.beginPath();
+            ctx.moveTo(x + 65, 225);
+            ctx.lineTo(oarX, oarY);
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+
+            // Panah AKSI (merah dengan glow)
+            const blink = Math.sin(Date.now() * 0.008) > 0 ? 1 : 0.6;
+            ctx.strokeStyle = `rgba(255, 64, 129, ${blink})`;
+            ctx.lineWidth = 6;
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = `rgba(255, 64, 129, ${blink})`;
+            ctx.beginPath();
+            ctx.moveTo(oarX, oarY);
+            ctx.lineTo(oarX - 50, oarY);
+            ctx.stroke();
+
+            ctx.fillStyle = `rgba(255, 64, 129, ${blink})`;
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = `rgba(255, 64, 129, ${blink * 0.8})`;
+            ctx.beginPath();
+            ctx.moveTo(oarX - 50, oarY);
+            ctx.lineTo(oarX - 65, oarY - 10);
+            ctx.lineTo(oarX - 65, oarY + 10);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Label AKSI
+            ctx.fillStyle = `rgba(255, 64, 129, ${blink})`;
+            ctx.font = 'bold 16px Segoe UI';
+            ctx.shadowBlur =

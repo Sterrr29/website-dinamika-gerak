@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasus Hukum I Newton</title>
+    <style>
+        :root {
+            --primary: #8b5cf6;      /* Purple-500 */
+            --secondary: #a855f7;    /* Purple-400 */
+            --accent: #c084fc;       /* Purple-300 */
+            --dark: #581c87;         /* Purple-800 */
+            --light: #f3e8ff;        /* Purple-50 */
+            --muted: #a78bfa;        /* Purple-400 */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--light);
+            line-height: 1.7;
+            padding: 20px 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--light), #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        .main-content {
+            padding: 2rem 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .content-text {
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.15em;
+            color: var(--light);
+        }
+        
+        .content-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 15px;
+            margin: 2rem auto;
+            display: block;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .content-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.5);
+        }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        footer p {
+            color: var(--light);
+            font-size: 1rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .content-section {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 2rem 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .content-text {
+                font-size: 1.05em;
+            }
+            
+            body {
+                padding: 10px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                margin-bottom: 2rem;
+                padding: 1.5rem 1rem;
+            }
+            
+            header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem 1rem;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Analisis Kasus Berdasarkan Hukum I Newton</h1>
+        </header>
+        
+        <div class="main-content">
+            <div class="content-section">
+                <div class="content-text">
+                    <p>Pada jam sibuk pagi hari, sebuah mobil melaju di jalan raya yang cukup padat. Pengemudi menjaga kecepatan karena kondisi lalu lintas terlihat lancar. Namun, beberapa meter di depan, sebuah kendaraan tiba-tiba berhenti sehingga pengemudi harus menginjak rem secara mendadak.</p>
+                    
+                    <p>Akibat pengereman tersebut, mobil berhenti secara tiba-tiba, tetapi tubuh pengemudi dan penumpang justru terdorong ke depan. Salah satu penumpang hampir membentur dashboard karena tidak menggunakan sabuk pengaman. Beberapa kendaraan di belakang juga harus mengerem keras agar tidak terjadi tabrakan beruntun.</p>
+                    
+                    <p>Situasi ini menimbulkan perbedaan pendapat di antara mereka. Penumpang beranggapan bahwa tubuhnya terdorong karena ada "gaya dorong dari kursi". Pengemudi berpendapat bahwa dorongan itu terjadi karena mobil kehilangan gaya gerak. Sementara itu, seorang petugas lalu lintas yang melihat kejadian tersebut mengatakan bahwa peristiwa ini berkaitan dengan sifat benda yang cenderung mempertahankan keadaannya, meskipun ada gaya yang bekerja.</p>
+                    
+                    <p>Perbedaan pandangan ini menimbulkan pertanyaan penting: mengapa tubuh penumpang tetap bergerak ke depan saat mobil direm mendadak, dan bagaimana cara paling efektif untuk mengurangi risiko cedera akibat peristiwa tersebut?</p>
+                    
+                    <p>Masalah ini perlu dianalisis menggunakan konsep Hukum I Newton (hukum inersia) untuk menentukan solusi yang tepat dan memberikan alasan ilmiah atas solusi tersebut.</p>
+                </div>
+                
+                <img src="kasus1/kasus1.png" alt="Ilustrasi kasus hukum I Newton" class="content-image">
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 Permasalahan Hukum I Newton. Dibuat oleh Ester Maesya Tamba.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasus Evakuasi Mobil Terjun ke Jurang</title>
+    <style>
+        :root {
+            --primary: #8b5cf6;  /* Ungu primer */
+            --secondary: #a78bfa;
+            --accent: #c4b5fd;
+            --dark: #4c1d95;
+            --light: #f8fafc;
+            --muted: #a78bfa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        
+        .main-content {
+            padding: 2rem 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .content-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .content-image:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.4);
+        }
+        
+        .content-text {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            background: rgba(139, 92, 246, 0.3);
+            border-left: 5px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .highlight p {
+            color: white;
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.4);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 20px 20px 0 0;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        footer p {
+            color: #e2e8f0;
+            font-size: 1rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .content-section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .content-text {
+                font-size: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                🚗 Kasus Hukum II Newton
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <section class="hero">
+                <h1>Evakuasi Mobil Terjun ke Jurang</h1>
+                <p>Analisis ilmiah strategi penyelamatan berbasis Hukum Newton</p>
+            </section>
+            
+            <div class="content-section">
+                <div class="image-container">
+                    <img src="kasus2/kasus2.png" alt="Ilustrasi mobil terjun ke jurang dan proses evakuasi" class="content-image">
+                </div>
+                
+                <div class="content-text">
+                    Sebuah mobil yang membawa satu keluarga terjun ke jurang di wilayah <strong>Kabupaten Langkat</strong> saat perjalanan pulang dari liburan di daerah pegunungan Karo. Mobil tersebut berhenti di lereng jurang dengan posisi miring dan sebagian bodi tertahan oleh semak dan tanah.
+                </div>
+                
+                <div class="content-text">
+                    Tim penyelamat yang datang ke lokasi berencana melakukan evakuasi dengan menarik mobil menggunakan <strong>tali baja</strong> yang dihubungkan ke kendaraan derek. Namun, medan di sekitar jurang cukup curam dan licin akibat hujan, sehingga mobil sulit ditarik ke atas.
+                </div>
+                
+                <div class="content-text">
+                    Sebagian anggota tim berpendapat bahwa mobil dapat langsung ditarik dengan gaya sebesar mungkin agar cepat terangkat. Sementara anggota lain menyarankan agar penarikan dilakukan secara bertahap karena jika gaya tarik terlalu besar, tali bisa putus atau mobil justru tergelincir lebih dalam.
+                </div>
+                
+                <div class="highlight">
+                    <p>❓ <strong>Perbedaan pendapat ini menimbulkan persoalan:</strong> Berapa besar gaya tarik yang aman dan efektif agar mobil dapat dievakuasi tanpa menimbulkan risiko tambahan?</p>
+                </div>
+                
+                <div class="content-text">
+                    Untuk menjawab masalah ini, tim harus menganalisis hubungan antara <strong>gaya tarik, massa mobil, dan percepatan gerak</strong> selama proses evakuasi, serta menjelaskan secara ilmiah mengapa strategi penarikan tertentu lebih aman berdasarkan <strong>Hukum II Newton</strong>.
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 Permasalahan Hukum II Newton. Dibuat oleh <strong>Ester Maesya Tamba</strong></p>
+        </footer>
+    </div>
+</body>
+</html>

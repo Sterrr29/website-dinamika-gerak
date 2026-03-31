@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🟣 Newton's Laws Simulations</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 25%, #c084fc 50%, #d8b4fe 100%);
+            color: #f3e8ff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-size: clamp(2em, 5vw, 3.5em);
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
+            text-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            letter-spacing: 1px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            }
+            to {
+                text-shadow: 0 4px 30px rgba(168, 85, 247, 0.6);
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .simulation {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 24px;
+            box-shadow: 
+                0 8px 32px rgba(139, 92, 246, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: clamp(280px, 30vw, 350px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .simulation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .simulation:hover::before {
+            left: 100%;
+        }
+
+        .simulation:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(139, 92, 246, 0.5),
+                0 0 0 1px rgba(168, 85, 247, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .simulation img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .simulation:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+        }
+
+        .simulation h2 {
+            font-size: 1.6em;
+            background: linear-gradient(135deg, #e9d5ff, #f3e8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .simulation p {
+            font-size: 1.1em;
+            color: #e9d5ff;
+            line-height: 1.6;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        /* Floating particles effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                gap: 25px;
+                padding: 15px;
+            }
+            
+            .simulation {
+                padding: 25px;
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            h1 {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(168, 85, 247, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#a855f7, #9333ea);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles background -->
+    <div class="particles" id="particles"></div>
+
+    <h1>🟣 Explore Newton's Laws</h1>
+    
+    <div class="container">
+        <a href="1newton.html">
+            <div class="simulation">
+                <img src="3newton/3newton.png" alt="HTML5 Simulation" loading="lazy">
+                <h2>🎮 HTML5 Simulation</h2>
+                <p>Interactive simulation of Newton's laws using HTML5 Canvas. Experience physics in real-time!</p>
+            </div>
+        </a>
+        
+        <a href="1newtonb.html">
+            <div class="simulation">
+                <img src="3newtonb/3newtonb.png" alt="Virtual Lab" loading="lazy">
+                <h2>🔬 Virtual Lab</h2>
+                <p>Advanced virtual laboratory for experimenting with Newton's principles. Dive into science!</p>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = (Math.random() * 6 + 2) + 'px';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialize particles on load
+        window.addEventListener('load', createParticles);
+
+        // Preload images
+        const images = [
+            '3newton/3newton.png',
+            '3newtonb/3newtonb.png'
+        ];
+
+        images.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+    </script>
+</body>
+</html>
