@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kasus Evakuasi Mobil Terjun ke Jurang</title>
+    <title>Kasus Evakuasi Mobil Terjun ke Jurang - Hukum II Newton</title>
     <style>
         :root {
-            --primary: #8b5cf6;  /* Ungu primer */
+            --primary: #8b5cf6;
             --secondary: #a78bfa;
             --accent: #c4b5fd;
             --dark: #4c1d95;
             --light: #f8fafc;
             --muted: #a78bfa;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
         }
         
         * {
@@ -20,132 +22,266 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: var(--light);
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
         
+        /* ===== HEADER ===== */
         header {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
+            backdrop-filter: blur(12px);
+            padding: 1.2rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-radius: 0 0 20px 20px;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
         
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 1.6rem;
+            font-weight: 700;
             color: white;
             text-align: center;
+            letter-spacing: 0.5px;
         }
         
-        .main-content {
-            padding: 2rem 0;
-            min-height: calc(100vh - 200px);
+        .logo span {
+            color: var(--accent);
         }
         
+        /* ===== HERO SECTION ===== */
         .hero {
             text-align: center;
-            margin-bottom: 3rem;
+            padding: 3rem 0 2rem;
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, #fff, #e2e8f0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 700;
+            font-weight: 800;
+            line-height: 1.2;
         }
         
-        .hero p {
-            font-size: 1.1rem;
-            color: #e2e8f0;
-            max-width: 700px;
-            margin: 0 auto 1.5rem;
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
         }
         
-        .content-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+        /* ===== CONTENT SECTION ===== */
+        .content-wrapper {
+            padding: 2rem 0 4rem;
+        }
+        
+        .section-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
             padding: 2.5rem;
             margin-bottom: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
         }
         
-        .image-container {
+        .section-card:nth-child(2) { animation-delay: 0.15s; }
+        .section-card:nth-child(3) { animation-delay: 0.3s; }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+        
+        /* ===== ILUSTRASI ===== */
+        .illustration-container {
             text-align: center;
             margin: 2rem 0;
+        }
+        
+        .illustration-wrapper {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            border-radius: 16px;
         }
         
         .content-image {
             width: 100%;
-            max-width: 600px;
+            max-width: 580px;
             height: auto;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .content-image:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.4);
+            transform: scale(1.03);
+            box-shadow: 0 30px 60px rgba(139, 92, 246, 0.3);
         }
         
-        .content-text {
-            color: #e2e8f0;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+        .illustration-caption {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 1rem;
+            font-style: italic;
         }
         
-        .highlight {
-            background: rgba(139, 92, 246, 0.3);
-            border-left: 5px solid var(--primary);
-            padding: 1.5rem;
+        /* ===== VIDEO ===== */
+        .video-container {
             margin: 2rem 0;
-            border-radius: 0 15px 15px 0;
-            backdrop-filter: blur(10px);
-        }
-        
-        .highlight p {
-            color: white;
-            font-weight: 600;
-            font-size: 1.15rem;
-            margin: 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        footer {
-            background: rgba(0, 0, 0, 0.4);
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            border-radius: 20px 20px 0 0;
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            display: inline-block;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            border: 3px solid var(--glass-border);
+        }
+        
+        .video-wrapper video {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 13px;
+        }
+        
+        .video-caption {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+        
+        /* ===== TEKS KONTEN ===== */
+        .content-text {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            text-indent: 2em;
+        }
+        
+        .content-text strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .content-text:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* ===== HIGHLIGHT BOX ===== */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(167, 139, 250, 0.15));
+            border-left: 5px solid var(--primary);
+            border-radius: 0 20px 20px 0;
+            padding: 1.75rem 2rem;
+            margin: 2rem 0;
+        }
+        
+        .highlight-box .question-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        
+        .highlight-box p {
+            color: white;
+            font-size: 1.15rem;
+            font-weight: 500;
+            line-height: 1.8;
+            margin: 0;
+        }
+        
+        .highlight-box strong {
+            color: var(--accent);
+        }
+        
+        /* ===== INFO BOX ===== */
+        .info-box {
+            background: rgba(76, 29, 149, 0.3);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        
+        .info-box .info-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            border-radius: 24px 24px 0 0;
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--glass-border);
         }
         
         footer p {
-            color: #e2e8f0;
-            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
         }
         
-        /* Animations */
+        footer strong {
+            color: var(--accent);
+        }
+        
+        /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -157,85 +293,152 @@
             }
         }
         
-        .content-section {
-            animation: fadeInUp 0.8s ease-out;
-        }
-        
-        /* Responsive */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
+            .container {
+                padding: 0 16px;
             }
             
-            .content-section {
-                padding: 1.5rem;
-                margin-bottom: 1.5rem;
+            .hero {
+                padding: 2rem 0 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-card {
+                padding: 1.75rem;
+                border-radius: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.25rem;
             }
             
             .content-text {
                 font-size: 1rem;
+                text-align: left;
+            }
+            
+            .highlight-box {
+                padding: 1.25rem 1.5rem;
+            }
+            
+            .highlight-box p {
+                font-size: 1.05rem;
             }
             
             .logo {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
         }
         
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 1.65rem;
             }
             
-            .container {
-                padding: 0 15px;
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-card {
+                padding: 1.25rem;
+            }
+            
+            .content-text {
+                font-size: 0.95rem;
+                line-height: 1.7;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <!-- Header -->
+    <header>
+        <div class="container">
             <div class="logo">
-                🚗 Kasus Hukum II Newton
-            </div>
-        </header>
-        
-        <div class="main-content">
-            <section class="hero">
-                <h1>Evakuasi Mobil Terjun ke Jurang</h1>
-                <p>Analisis ilmiah strategi penyelamatan berbasis Hukum Newton</p>
-            </section>
-            
-            <div class="content-section">
-                <div class="image-container">
-                    <img src="kasus2/kasus2.png" alt="Ilustrasi mobil terjun ke jurang dan proses evakuasi" class="content-image">
-                </div>
-                
-                <div class="content-text">
-                    Sebuah mobil yang membawa satu keluarga terjun ke jurang di wilayah <strong>Kabupaten Langkat</strong> saat perjalanan pulang dari liburan di daerah pegunungan Karo. Mobil tersebut berhenti di lereng jurang dengan posisi miring dan sebagian bodi tertahan oleh semak dan tanah.
-                </div>
-                
-                <div class="content-text">
-                    Tim penyelamat yang datang ke lokasi berencana melakukan evakuasi dengan menarik mobil menggunakan <strong>tali baja</strong> yang dihubungkan ke kendaraan derek. Namun, medan di sekitar jurang cukup curam dan licin akibat hujan, sehingga mobil sulit ditarik ke atas.
-                </div>
-                
-                <div class="content-text">
-                    Sebagian anggota tim berpendapat bahwa mobil dapat langsung ditarik dengan gaya sebesar mungkin agar cepat terangkat. Sementara anggota lain menyarankan agar penarikan dilakukan secara bertahap karena jika gaya tarik terlalu besar, tali bisa putus atau mobil justru tergelincir lebih dalam.
-                </div>
-                
-                <div class="highlight">
-                    <p>❓ <strong>Perbedaan pendapat ini menimbulkan persoalan:</strong> Berapa besar gaya tarik yang aman dan efektif agar mobil dapat dievakuasi tanpa menimbulkan risiko tambahan?</p>
-                </div>
-                
-                <div class="content-text">
-                    Untuk menjawab masalah ini, tim harus menganalisis hubungan antara <strong>gaya tarik, massa mobil, dan percepatan gerak</strong> selama proses evakuasi, serta menjelaskan secara ilmiah mengapa strategi penarikan tertentu lebih aman berdasarkan <strong>Hukum II Newton</strong>.
-                </div>
+                🚗 <span>Hukum II Newton</span>
             </div>
         </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Evakuasi Mobil Terjun ke Jurang</h1>
+            <p class="hero-subtitle">Analisis ilmiah strategi penyelamatan berbasis Hukum Newton untuk kasus evakuasi kendaraan di medan berbahaya</p>
+        </section>
         
-        <footer>
-            <p>&copy; 2026 Permasalahan Hukum II Newton. Dibuat oleh <strong>Ester Maesya Tamba</strong></p>
-        </footer>
-    </div>
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            
+            <!-- Section 1: Ilustrasi -->
+            <article class="section-card">
+                <h2 class="section-title">Ilustrasi Peristiwa</h2>
+                
+                <div class="illustration-container">
+                    <div class="illustration-wrapper">
+                        <img src="kasus2/kasus2.png" 
+                             alt="Ilustrasi proses evakuasi mobil yang terjun ke jurang" 
+                             class="content-image">
+                    </div>
+                    <p class="illustration-caption">Gambar ilustrasi proses evakuasi mobil di wilayah Kabupaten Langkat</p>
+                </div>
+                
+                <div class="content-text">
+                    Sebuah mobil yang membawa satu keluarga <strong>terjun ke jurang</strong> di wilayah <strong>Kabupaten Langkat</strong> saat perjalanan pulang dari liburan di daerah pegunungan Karo. Mobil tersebut berhenti di lereng jurang dengan posisi miring dan sebagian bodi tertahan oleh semak dan tanah yang tidak kokoh.
+                </div>
+            </article>
+            
+            <!-- Section 2: Video Permasalahan -->
+            <article class="section-card">
+                <h2 class="section-title">Video Dokumentasi</h2>
+                
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <video controls>
+                            <source src="vk2/vk2.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung pemutaran video.
+                        </video>
+                    </div>
+                    <p class="video-caption">Dokumentasi proses evakuasi dan analisis permasalahan</p>
+                </div>
+                
+                <div class="content-text">
+                    Tim penyelamat yang datang ke lokasi berencana melakukan evakuasi dengan menarik mobil menggunakan <strong>tali baja</strong> yang dihubungkan ke kendaraan derek. Namun, medan di sekitar jurang cukup curam dan licin akibat hujan, sehingga mobil sulit ditarik ke atas secara langsung.
+                </div>
+            </article>
+            
+            <!-- Section 3: Permasalahan -->
+            <article class="section-card">
+                <h2 class="section-title">Permasalahan Evakuasi</h2>
+                
+                <div class="content-text">
+                    Sebagian anggota tim berpendapat bahwa mobil dapat langsung ditarik dengan <strong>gaya sebesar mungkin</strong> agar cepat terangkat ke permukaan. Namun, anggota lain mengingatkan bahwa gaya tarik yang terlalu besar berisiko membuat <strong>tali baja putus</strong> atau menyebabkan mobil justru <strong>tergelincir lebih dalam</strong> ke dasar jurang.
+                </div>
+                
+                <div class="highlight-box">
+                    <span class="question-label">❓ Pertanyaan Kunci</span>
+                    <p>Berapa besar <strong>gaya tarik</strong> yang aman dan efektif agar mobil dapat dievakuasi tanpa menimbulkan risiko tambahan?</p>
+                </div>
+                
+                <div class="info-box">
+                    <div class="info-icon">💡</div>
+                    <p>Untuk menjawab masalah ini, tim harus menganalisis hubungan antara <strong>gaya tarik, massa mobil, dan percepatan gerak</strong> selama proses evakuasi, serta menjelaskan secara ilmiah mengapa strategi penarikan tertentu lebih aman berdasarkan <strong>Hukum II Newton</strong>.</p>
+                </div>
+            </article>
+            
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Masalah Utama Hukum II Newton. Dibuat oleh <strong>Ester Maesya Tamba</strong></p>
+        </div>
+    </footer>
 </body>
 </html>
