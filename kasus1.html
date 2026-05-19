@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kasus Hukum I Newton</title>
+    <title>Hukum I Newton - Studi Kasus</title>
     <style>
         :root {
-            --primary: #8b5cf6;      /* Purple-500 */
-            --secondary: #a855f7;    /* Purple-400 */
-            --accent: #c084fc;       /* Purple-300 */
-            --dark: #581c87;         /* Purple-800 */
-            --light: #f3e8ff;        /* Purple-50 */
-            --muted: #a78bfa;        /* Purple-400 */
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #a855f7;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --text-light: #f1f5f9;
+            --text-muted: rgba(255, 255, 255, 0.85);
         }
         
         * {
@@ -21,189 +23,375 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
             min-height: 100vh;
-            color: var(--light);
-            line-height: 1.7;
-            padding: 20px 0;
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
         
+        /* Header */
         header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem 0;
             text-align: center;
-            border-radius: 20px;
-            margin-bottom: 3rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 3rem 1rem 2rem;
         }
         
         header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--light), #e2e8f0);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #e0c3fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 700;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
         }
         
-        .main-content {
-            padding: 2rem 0;
-            min-height: calc(100vh - 200px);
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
         }
         
-        .content-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+        /* Main Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        /* Card Styles */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .content-text {
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            font-size: 1.15em;
-            color: var(--light);
-        }
-        
-        .content-image {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            border-radius: 15px;
-            margin: 2rem auto;
-            display: block;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border: 3px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
             transition: all 0.3s ease;
         }
         
-        .content-image:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.5);
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
         
-        footer {
-            background: rgba(0, 0, 0, 0.3);
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .card-header .icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Text Content */
+        .story-content {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+        
+        .story-content p {
+            margin-bottom: 1.2rem;
+        }
+        
+        .story-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Opinion Cards */
+        .opinion-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed rgba(255, 255, 255, 0.15);
+        }
+        
+        .opinion-section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        
+        .opinion-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 0.8rem;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .opinion-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .opinion-item .role {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .opinion-item .text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+        
+        /* Question Card */
+        .question-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(168, 85, 247, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 2rem;
+        }
+        
+        .question-card .card-header {
+            border-bottom: none;
+            margin-bottom: 1rem;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #fff;
+            font-weight: 400;
+        }
+        
+        /* Video Section */
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .video-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
-            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Image Section */
+        .image-section {
+            margin: 2rem 0;
+        }
+        
+        .image-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .image-wrapper {
+            border-radius: 16px;
+            overflow: hidden;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--glass-border);
         }
         
         footer p {
-            color: var(--light);
-            font-size: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
         }
         
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        /* Responsive */
+        @media (max-width: 968px) {
+            .main-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
             }
         }
         
-        .content-section {
-            animation: fadeIn 0.8s ease-in-out;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
             }
             
-            .content-section {
-                padding: 2rem 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .content-text {
-                font-size: 1.05em;
-            }
-            
-            body {
-                padding: 10px 0;
-            }
-        }
-        
-        @media (max-width: 480px) {
             header {
-                margin-bottom: 2rem;
-                padding: 1.5rem 1rem;
+                padding: 2rem 1rem 1.5rem;
             }
             
-            header h1 {
-                font-size: 1.6rem;
+            .card {
+                padding: 1.5rem;
             }
             
-            .content-section {
-                padding: 1.5rem 1rem;
+            .story-content {
+                font-size: 0.95rem;
             }
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Analisis Kasus Berdasarkan Hukum I Newton</h1>
+            <h1>Studi Kasus: Hukum I Newton</h1>
+            <p>Analisis Fenomena Inersia dalam Kehidupan Sehari-hari</p>
         </header>
         
-        <div class="main-content">
-            <div class="content-section">
-                <div class="content-text">
-                    <p>Pada jam sibuk pagi hari, sebuah mobil melaju di jalan raya yang cukup padat. Pengemudi menjaga kecepatan karena kondisi lalu lintas terlihat lancar. Namun, beberapa meter di depan, sebuah kendaraan tiba-tiba berhenti sehingga pengemudi harus menginjak rem secara mendadak.</p>
+        <!-- Main Content - Left Column -->
+        <div class="main-grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🚗</span>
+                    <h2>Kronologi Kejadian</h2>
+                </div>
+                <div class="story-content">
+                    <p>Pada pagi hari, sebuah mobil melaju di jalan raya yang cukup padat. Pengemudi menjaga kecepatan karena kondisi lalu lintas terlihat lancar. Namun, beberapa meter di depan, sebuah kendaraan tiba-tiba berhenti sehingga pengemudi harus menginjak rem secara mendadak.</p>
                     
                     <p>Akibat pengereman tersebut, mobil berhenti secara tiba-tiba, tetapi tubuh pengemudi dan penumpang justru terdorong ke depan. Salah satu penumpang hampir membentur dashboard karena tidak menggunakan sabuk pengaman. Beberapa kendaraan di belakang juga harus mengerem keras agar tidak terjadi tabrakan beruntun.</p>
-                    
-                    <p>Situasi ini menimbulkan perbedaan pendapat di antara mereka. Penumpang beranggapan bahwa tubuhnya terdorong karena ada "gaya dorong dari kursi". Pengemudi berpendapat bahwa dorongan itu terjadi karena mobil kehilangan gaya gerak. Sementara itu, seorang petugas lalu lintas yang melihat kejadian tersebut mengatakan bahwa peristiwa ini berkaitan dengan sifat benda yang cenderung mempertahankan keadaannya, meskipun ada gaya yang bekerja.</p>
-                    
-                    <p>Perbedaan pandangan ini menimbulkan pertanyaan penting: mengapa tubuh penumpang tetap bergerak ke depan saat mobil direm mendadak, dan bagaimana cara paling efektif untuk mengurangi risiko cedera akibat peristiwa tersebut?</p>
-                    
-                    <p>Masalah ini perlu dianalisis menggunakan konsep Hukum I Newton (hukum inersia) untuk menentukan solusi yang tepat dan memberikan alasan ilmiah atas solusi tersebut.</p>
                 </div>
-                
-                <img src="kasus1/kasus1.png" alt="Ilustrasi kasus hukum I Newton" class="content-image">
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">💬</span>
+                    <h2>Perbedaan Perspektif</h2>
+                </div>
+                <div class="story-content">
+                    <p>Situasi ini menimbulkan perbedaan pendapat di antara mereka:</p>
+                    
+                    <div class="opinion-section">
+                        <div class="opinion-item">
+                            <div class="role">Penumpang</div>
+                            <div class="text">Tubuhnya terdorong karena ada "gaya dorong dari kursi"</div>
+                        </div>
+                        
+                        <div class="opinion-item">
+                            <div class="role">Pengemudi</div>
+                            <div class="text">Dorongan itu terjadi karena mobil kehilangan gaya gerak</div>
+                        </div>
+                        
+                        <div class="opinion-item">
+                            <div class="role">Petugas Lalu Lintas</div>
+                            <div class="text">Peristiwa ini berkaitan dengan sifat benda yang cenderung mempertahankan keadaannya, meskipun ada gaya yang bekerja</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Question Card -->
+        <div class="card question-card">
+            <div class="card-header">
+                <span class="icon">❓</span>
+                <h2>Pertanyaan</h2>
+            </div>
+            <p class="question-text">
+                Mengapa tubuh penumpang tetap bergerak ke depan saat mobil direm mendadak dan bagaimana cara paling efektif untuk mengurangi risiko cedera akibat peristiwa tersebut?
+            </p>
+        </div>
+        
+        <!-- Video Section -->
+        <div class="video-grid">
+            <div class="video-card">
+                <h3>🎥 Video Permasalahan</h3>
+                <div class="video-wrapper">
+                    <video controls preload="metadata">
+                        <source src="vk1a/vk1a.mp4" type="video/mp4">
+                        Browser tidak mendukung video.
+                    </video>
+                </div>
+            </div>
+            
+            <div class="video-card">
+                <h3>🎬 Video Ilustrasi Rem Mendadak</h3>
+                <div class="video-wrapper">
+                    <video controls preload="metadata">
+                        <source src="vk1b/vk1b.mp4" type="video/mp4">
+                        Browser tidak mendukung video.
+                    </video>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Image Section -->
+        <div class="image-section">
+            <div class="image-card">
+                <div class="image-wrapper">
+                    <img src="kasus1/kasus1.png" alt="Ilustrasi Kasus Hukum I Newton" loading="lazy">
+                </div>
             </div>
         </div>
         
         <footer>
-            <p>&copy; 2026 Permasalahan Hukum I Newton. Dibuat oleh Ester Maesya Tamba.</p>
+            <p>&copy; 2026 Masalah Utama Hukum I Newton dibuat oleh Ester Maesya Tamba</p>
         </footer>
     </div>
 </body>
