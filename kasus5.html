@@ -3,108 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Momentum dan Impuls pada Peristiwa Tabrakan Mobil</title>
+    <title>Permasalahan Momentum dan Impuls</title>
+
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #e8e8f5; /* Light lavender untuk teks utama */
-            margin: 0;
-            padding: 20px;
-            line-height: 1.7;
-            min-height: 100vh;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
         }
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            background: rgba(102, 126, 234, 0.15); /* Ungu transparan */
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: 
-                0 8px 32px rgba(102, 126, 234, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+        body{
+            font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+            background:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#8b5cf6 100%);
+            min-height:100vh;
+            color:#f8fafc;
+            line-height:1.7;
         }
-        h1 {
-            color: #ffffff;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.2em;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ffffff 0%, #e8e8f5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+        .container{
+            max-width:900px;
+            margin:auto;
+            padding:2rem;
         }
-        img {
-            display: block;
-            margin: 25px auto;
-            max-width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 
-                0 10px 30px rgba(118, 75, 162, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+        main{
+            padding-top:50px;
+            padding-bottom:3rem;
         }
-        p {
-            color: #f0f0ff; /* Very light purple */
-            margin-bottom: 20px;
-            font-size: 16.5px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+        /* Hero */
+
+        .hero{
+            text-align:center;
+            padding:3rem 0;
         }
-        .highlight {
-            background: linear-gradient(135deg, rgba(118, 75, 162, 0.3) 0%, rgba(102, 126, 234, 0.3) 100%);
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid #764ba2;
-            margin: 20px 0;
+
+        .hero h1{
+            font-size:2.5rem;
+            font-weight:800;
+            margin-bottom:.5rem;
         }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(118, 75, 162, 0.2) 0%, rgba(102, 126, 234, 0.2) 100%);
-            color: #e0e0ff;
-            border-radius: 15px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.25);
-            font-style: italic;
+
+        .hero p{
+            font-size:1.1rem;
+            color:#c4b5fd;
         }
-        footer::before {
-            content: "✨ ";
-            font-size: 1.2em;
+
+        /* Card */
+
+        .card{
+            background:rgba(255,255,255,.10);
+            backdrop-filter:blur(15px);
+            border-radius:20px;
+            padding:2rem;
+            margin-bottom:1.5rem;
+            border:1px solid rgba(255,255,255,.15);
         }
+
+        /* Video */
+
+        .video-wrapper{
+            width:100%;
+            border-radius:15px;
+            overflow:hidden;
+            margin-bottom:1rem;
+            box-shadow:0 10px 40px rgba(0,0,0,.3);
+        }
+
+        .video-wrapper video{
+            width:100%;
+            display:block;
+            background:#000;
+        }
+
+        /* Text */
+
+        .text{
+            font-size:1.05rem;
+            color:#e2e8f0;
+            margin-bottom:1.5rem;
+            text-align:justify;
+        }
+
+        .text strong{
+            color:#c4b5fd;
+        }
+
+        .text em{
+            color:#fcd34d;
+            font-style:normal;
+        }
+
+        /* Warning */
+
+        .warning-box{
+            background:linear-gradient(135deg,
+            rgba(245,158,11,.2),
+            rgba(234,88,12,.15));
+            border-left:4px solid #f59e0b;
+            border-radius:0 12px 12px 0;
+            padding:1.2rem 1.5rem;
+            margin:1.5rem 0;
+        }
+
+        .warning-box p{
+            color:#fcd34d;
+            text-align:justify;
+        }
+
+        /* Question */
+
+        .question-box{
+            background:linear-gradient(135deg,
+            rgba(139,92,246,.3),
+            rgba(167,139,250,.2));
+            border-left:4px solid #c4b5fd;
+            border-radius:0 12px 12px 0;
+            padding:1.2rem 1.5rem;
+            margin-top:1.5rem;
+        }
+
+        .question-box h3{
+            color:#c4b5fd;
+            margin-bottom:.5rem;
+        }
+
+        .question-box p{
+            color:#e2e8f0;
+            text-align:justify;
+        }
+
+        footer{
+            background:rgba(30,27,75,.95);
+            text-align:center;
+            padding:2rem;
+            margin-top:2rem;
+        }
+
+        footer p{
+            color:#a78bfa;
+        }
+
+        footer strong{
+            color:#fff;
+        }
+
+        @media(max-width:768px){
+
+            .container{
+                padding:1rem;
+            }
+
+            .hero h1{
+                font-size:1.9rem;
+            }
+
+            .card{
+                padding:1.3rem;
+            }
+
+        }
+
     </style>
+
 </head>
+
 <body>
-    <div class="container">
-        <h1>Momentum dan Impuls pada Peristiwa Tabrakan Mobil</h1>
-        <img src="kasus5/kasus5.jpeg" alt="Ilustrasi Tabrakan Mobil">
-        
-        <div class="highlight">
-            <p><strong>Saat ini hampir seluruh mobil dilengkapi fitur airbag dan seatbelt</strong> yang dilengkapi sensor dalam pengoperasiannya. Airbag merupakan salah satu fitur keselamatan pada mobil untuk melindungi pengemudi dan penumpang bagian depan saat terjadi kecelakaan.</p>
+
+<main>
+
+<div class="container">
+
+    <!-- Hero -->
+
+    <section class="hero">
+        <h1>Truk Bermuatan Besi Lepas Kendali</h1>
+        <p>Dairi, Sumatera Utara – Juni 2026</p>
+    </section>
+
+    <!-- Video -->
+
+    <div class="card">
+
+        <div class="video-wrapper">
+            <video controls>
+                <source src="vk4/vk4.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
         </div>
-        
-        <p>Airbag berfungsi melindungi daerah <strong>kepala, leher, dan dada</strong>. Airbag umumnya akan mengembang dari dashboard beberapa milidetik setelah tabrakan. Sensor airbag yang ada di bagian depan mobil baru akan bereaksi jika mobil menghantam benda statis dengan kecepatan minimal sekitar 40 km/jam.</p>
-        
-        <div class="highlight">
-            <p>Pada suatu kejadian kecelakaan di <strong>Jalan Medan–Tebing Tinggi KM 45</strong>, sebuah mobil pick up bermassa 1500 kg melaju dengan kecepatan 72 km/jam dan menabrak kendaraan di depannya hingga bagian depan mobil hancur dan mobil tersebut berhenti seketika dalam waktu 0,1 detik.</p>
-        </div>
-        
-        <p>Pada saat yang sama, tubuh pengemudi yang semula bergerak bersama mobil tetap memiliki <strong>momentum ke depan</strong> sehingga mengalami gaya tumbukan yang sangat besar.</p>
-        
-        <p>Jika massa pengemudi adalah <strong>70 kg</strong> dan gaya maksimum yang dapat ditahan oleh seatbelt sebesar <strong>3,5 × 10³ N</strong>, sedangkan airbag mampu memperpanjang waktu tumbukan sehingga gaya maksimum yang diterima tubuh menjadi <strong>1,5 × 10³ N</strong>, maka:</p>
-        
-        <div class="highlight">
-            <p><em>berikan kesimpulanmu mengenai kondisi pengemudi setelah kecelakaan tersebut dengan menganalisis perubahan momentum dan impuls yang terjadi. Jelaskan secara ilmiah mengapa penggunaan airbag dan seatbelt dapat mengurangi risiko cedera fatal.</em></p>
-        </div>
+
     </div>
-    <footer>
-        © 2026 Permasalahan momentum dan impuls dibuat oleh Ester Maesya Tamba. All rights reserved.
-    </footer>
+
+    <!-- Permasalahan -->
+
+    <div class="card">
+
+        <p class="text">
+            Pada <strong>Juni 2026</strong>, terjadi kecelakaan beruntun di ruas jalan Sidikalang–Medan, Kabupaten Dairi, Sumatera Utara. Sebuah <strong>truk besar bermuatan besi</strong> diduga mengalami gangguan pada sistem pengereman sehingga kehilangan kendali saat melaju di jalan raya. Truk tersebut kemudian menghantam sebuah truk boks, mendorongnya menabrak sebuah mobil <em>pick up</em>, dan terus melaju hingga menabrak dua rumah warga serta sebuah mobil yang sedang terparkir. Peristiwa tersebut mengakibatkan dua orang meninggal dunia dan beberapa orang lainnya mengalami luka-luka.
+        </p>
+
+        <div class="warning-box">
+            <p>
+                Sebagian masyarakat menganggap bahwa kecelakaan tersebut hanya disebabkan oleh <strong>rem truk yang tidak berfungsi</strong>. Akan tetapi, para ahli menjelaskan bahwa tingkat kerusakan yang terjadi saat tabrakan juga dipengaruhi oleh <strong>momentum dan impuls</strong>. Kendaraan yang memiliki massa besar dan bergerak dengan kecepatan tinggi memiliki momentum yang lebih besar sehingga lebih sulit dihentikan. Ketika kendaraan mengalami tumbukan, perubahan momentum yang terjadi dalam waktu sangat singkat menghasilkan impuls yang menyebabkan gaya tumbukan menjadi sangat besar.
+            </p>
+        </div>
+
+        <p class="text">
+            Dalam video kecelakaan terlihat bahwa setelah kehilangan kendali, truk bermuatan besi terus melaju dan menghantam beberapa kendaraan sebelum akhirnya menabrak rumah warga. Meskipun telah terjadi benturan pertama, truk masih tetap bergerak dan menyebabkan tabrakan berikutnya. Kondisi tersebut menunjukkan bahwa truk memiliki momentum yang sangat besar sehingga sulit dihentikan dalam waktu singkat. Akibatnya, impuls yang terjadi pada setiap tumbukan menjadi semakin besar sehingga kerusakan yang ditimbulkan pada kendaraan, bangunan, dan lingkungan sekitar juga semakin parah.
+        </p>
+
+        <div class="question-box">
+
+            <h3>❓ Pertanyaan</h3>
+
+            <p>
+                Bagaimana hubungan antara massa, kecepatan, momentum, dan impuls dapat menjelaskan mengapa truk bermuatan besi masih terus bergerak setelah menabrak kendaraan lain, serta mengapa setiap tumbukan yang terjadi menghasilkan kerusakan yang semakin besar?
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Masalah Utama Momentum dan Impuls Dibuat Oleh <strong>Ester Maesya Tamba</strong></p>
+</footer>
+
 </body>
 </html>
